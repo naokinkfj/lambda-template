@@ -1,0 +1,22 @@
+{
+  "name": "lambda",
+  "scripts": {
+    "build": "tsc",
+    "serve": "npm run build && firebase serve --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "aws lambda update-function-code --function-name arn:aws:lambda:ap-northeast-1:913054756243:function:sample --zip-file fileb://Lambda-Deployment.zip",
+    "predeploy": "npm run build && zip -r Lambda-Deployment.zip lib node_modules -x *.zip *.json *.log"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "typescript": "~2.8.3",
+    "@types/request": "^2.47.1",
+    "@types/request-promise-native": "^1.0.15"
+  },
+  "private": true
+}
